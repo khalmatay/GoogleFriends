@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pushToGit": "git add . && git commit -m 'some commit text' && git push"
+
+    "pushToGit" : " git add . && git commit -m 'done only icon google ext' && git push "
 
   },
   "eslintConfig": {
