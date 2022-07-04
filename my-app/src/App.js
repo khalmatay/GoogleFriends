@@ -3,18 +3,24 @@ import "./App.css"
 import { Routes, Route , MemoryRouter} from "react-router-dom"
 import Auth from "./Auth"
 import Sign from "./signup-succes"
+import { useState } from "react"
 function App() {
-  
-  return (
+  const [currentPage, setCurrentPage] = useState('signin');
 
+  return (
+    <div>
+      {
+        currentPage === 'signin' && <Auth afterSignIn={() => setCurrentPage('main')}/>
+      }
+      {
+        currentPage === 'signup' && <Auth />
+      }
+      {
+        currentPage === 'main' && <div>hello user</div>
+      }
     
-    <MemoryRouter>
-      <Routes>
-        <Route path="/" element={<Auth />} />
-        <Route path="/nur" element={<Sign/>} />
-      </Routes>
-    </MemoryRouter>
+    </div>
   )
 }
 
-export default App;
+export default App; 

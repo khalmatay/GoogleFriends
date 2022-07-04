@@ -1,7 +1,7 @@
 
 import React, { useState } from "react"
 
-export default function (props) {
+export default function ({afterSignIn}) {
   let [authMode, setAuthMode] = useState("signin")
 
   const changeAuthMode = () => {
@@ -37,7 +37,7 @@ export default function (props) {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" onClick={afterSignIn}>
                 Submit
               </button>
             </div>
