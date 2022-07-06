@@ -16,10 +16,10 @@ function App() {
         currentPage === 'signup' && <Auth />
       }
       {
-        currentPage === 'main' && <div>hello user</div>
+        currentPage === 'main' && <Sign />
       }
-    
     </div>
+    
   )
 }
 
