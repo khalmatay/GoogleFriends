@@ -7,7 +7,12 @@ export default function ({afterSignIn}) {
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
-
+  const[itemToDo,setItemToDo]=useState("")
+  const handleChangeItem = (event) => { // принимает событие (автоматически) 
+    setItemToDo(event.target.value); // меняет значение инпута на то что пишем
+    };
+   
+  console.log(itemToDo)
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container first" >
@@ -26,6 +31,7 @@ export default function ({afterSignIn}) {
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
+		            onChange={handleChangeItem} // стандартный вызов функции
               />
             </div>
             <div className="form-group mt-3">
@@ -34,6 +40,7 @@ export default function ({afterSignIn}) {
                 type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
+                onChange={handleChangeItem} 
               />
             </div>
             <div className="d-grid gap-2 mt-3">
@@ -67,6 +74,7 @@ export default function ({afterSignIn}) {
               type="email"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
+              onChange={handleChangeItem} 
             />
           </div>
           <div className="form-group mt-3">
@@ -75,6 +83,7 @@ export default function ({afterSignIn}) {
               type="email"
               className="form-control mt-1"
               placeholder="Email Address"
+              onChange={handleChangeItem} 
             />
           </div>
           <div className="form-group mt-3">
@@ -83,6 +92,7 @@ export default function ({afterSignIn}) {
               type="password"
               className="form-control mt-1"
               placeholder="Password"
+              onChange={handleChangeItem} 
             />
           </div>
           <div className="d-grid gap-2 mt-3">
