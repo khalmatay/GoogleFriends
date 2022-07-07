@@ -8,6 +8,7 @@ export default function ({afterSignIn}) {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
   const[itemToDo,setItemToDo]=useState("")
+
   const handleChangeItem = (event) => { // принимает событие (автоматически) 
     setItemToDo(event.target.value); // меняет значение инпута на то что пишем
     };
