@@ -1,23 +1,44 @@
-
 import React, { useState } from "react"
+import { useForm } from 'react-hook-form';
 
 export default function ({afterSignIn}) {
   let [authMode, setAuthMode] = useState("signin")
-
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
-  const[itemToDo,setItemToDo]=useState("")
+  
 
+
+
+  const[itemToDo,setItemToDo]=useState("")
   const handleChangeItem = (event) => { // принимает событие (автоматически) 
     setItemToDo(event.target.value); // меняет значение инпута на то что пишем
-    };
-   
+  }; 
   console.log(itemToDo)
+  
+
+ 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+
+  const onSubmit = (data) => {
+    
+    console.log('dsfsdfsdf', data);
+    alert(JSON.stringify(data));
+    afterSignIn()
+  };
+
+
+
+
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container first" >
-        <form className="Auth-form">
+        <form className="Auth-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign In</h3>
             <div className="text-center">
@@ -29,6 +50,7 @@ export default function ({afterSignIn}) {
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
+                {...register("email", { required: true })}
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
@@ -38,6 +60,7 @@ export default function ({afterSignIn}) {
             <div className="form-group mt-3">
               <label>Password</label>
               <input
+                 {...register("password", { required: true })}
                 type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
@@ -45,9 +68,11 @@ export default function ({afterSignIn}) {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary" onClick={afterSignIn}>
+           
+                <button type="submit" className="btn btn-primary" >
                 Submit
-              </button>
+                </button>
+                {/* <input class="btn btn-primary" type="submit" value="Submit">Submit</input> */}
             </div>
             <p className="text-center mt-2">
               Forgot <a href="#">password?</a>
@@ -60,7 +85,7 @@ export default function ({afterSignIn}) {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
@@ -72,7 +97,8 @@ export default function ({afterSignIn}) {
           <div className="form-group mt-3">
             <label>Full Name</label>
             <input
-              type="email"
+              {...register("nickName", { required: true })}
+              type="text"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
               onChange={handleChangeItem} 
@@ -81,6 +107,7 @@ export default function ({afterSignIn}) {
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
+               {...register("email", { required: true })}
               type="email"
               className="form-control mt-1"
               placeholder="Email Address"
@@ -90,6 +117,7 @@ export default function ({afterSignIn}) {
           <div className="form-group mt-3">
             <label>Password</label>
             <input
+              {...register("password", { required: true })}
               type="password"
               className="form-control mt-1"
               placeholder="Password"
@@ -97,9 +125,12 @@ export default function ({afterSignIn}) {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
-              Submit
+            
+            <button type="submit" className="btn btn-primary" onClick={changeAuthMode}>
+            Submit
             </button>
+            {/* <input class="btn btn-primary" type="submit" value="Submit">Submit</input> */}
+            
           </div>
           <p className="text-center mt-2">
             Forgot <a href="#">password?</a>
