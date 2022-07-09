@@ -1,4 +1,0 @@
-{
-    "port":5000,
-    "mongoUri":"mongodb+srv://khalmatay:khalmatay@cluster0.9abmc.mongodb.net/?retryWrites=true&w=majority"
-}
