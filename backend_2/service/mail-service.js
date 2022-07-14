@@ -1,4 +1,7 @@
 class MailService{
+    async sendActivationMail(to,link){
+
+    }
 
 }
-module.exports = new MailService();
+export default new MailService();

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "pushToGit": " git add . && git commit -m 'conect server  ' && git push ",
+    "pushToGit": " git add . && git commit -m 'poka cto ne rabotaet routers ' && git push ",
     "type":"module"
   },
   "keywords": [],
