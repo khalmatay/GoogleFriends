@@ -26,7 +26,7 @@
     "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pushToGit": " git add . && git commit -m 'dobavil conrol by input ' && git push "
+    "pushToGit": " git add . && git commit -m 'dobavil валидацию sign in   ' && git push "
   },
   "eslintConfig": {
     "extends": [
