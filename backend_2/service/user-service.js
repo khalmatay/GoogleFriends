@@ -13,7 +13,7 @@ class UserService {
             const candidate = await UserModel.findOne({email})
         
             if (candidate) {
-                throw Error(`Пользователь с почтовым адресом ${email} уже существует`)
+                throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`)
             }
             const hashPassword = await bcrypt.hash(password, 3);
             const activationLink = uuid.v4(); // v34fa-asfasf-142saf-sa-asf
@@ -33,7 +33,7 @@ class UserService {
     async activate(activationLink){
         const user = await UserModel.findOne({activationLink})
         if (!user){
-            throw new Error('Некоректная ссылка активации')
+            throw new ApiError.BadRequest('Некоректная ссылка активации')
         }
         user.isActivated=true;
         await user.save();
