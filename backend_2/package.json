@@ -3,24 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "pushToGit": " git add . && git commit -m 'poka cto ne rabotaet routers ' && git push "
-    
-    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "nodemailer": "^6.7.7",
+    "recharts": "^2.1.12",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
