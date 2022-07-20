@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useForm } from 'react-hook-form';
-
+import SchedulingService from "../../http/schedulingService";
 export default function ({afterSignIn}) {
   let [authMode, setAuthMode] = useState("signin")
   const changeAuthMode = () => {
@@ -24,10 +24,12 @@ export default function ({afterSignIn}) {
   } = useForm();
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     
     console.log('dsfsdfsdf', data);
-    alert(JSON.stringify(data));
+    const token = await SchedulingService.login(data)
+    localStorage.setItem('token', token.refreshToken)
+    console.log(token)
     afterSignIn()
   };
 

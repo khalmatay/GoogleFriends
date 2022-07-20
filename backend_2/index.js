@@ -13,9 +13,7 @@ const errorMiddleware = require('./middleware/error-midlware')
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-
-}));
+app.use(cors());
 
 app.use('/api', router);
 app.use(errorMiddleware);
@@ -32,5 +30,4 @@ const start = async () => {
         console.log(e);
     }
 }
-
 start()
