@@ -9,6 +9,8 @@ const router = require('./router/router')
 const PORT = process.env.PORT || 8000;
 const app = express()
 
+const errorMiddleware = require('./middleware/error-midlware')
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -16,6 +18,7 @@ app.use(cors({
 }));
 
 app.use('/api', router);
+app.use(errorMiddleware);
 
 
 const start = async () => {

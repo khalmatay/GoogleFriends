@@ -9,7 +9,6 @@ export default function ({afterSignIn}) {
   
 
 
-
   const[itemToDo,setItemToDo]=useState("")
   const handleChangeItem = (event) => { // принимает событие (автоматически) 
     setItemToDo(event.target.value); // меняет значение инпута на то что пишем
@@ -31,8 +30,6 @@ export default function ({afterSignIn}) {
     alert(JSON.stringify(data));
     afterSignIn()
   };
-
-
 
 
   if (authMode === "signin") {
