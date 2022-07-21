@@ -10,13 +10,13 @@ function App() {
   return (
     <div>
       {
-        currentPage === 'signin' && <Auth afterSignIn={() => setCurrentPage('main')}/>
+        currentPage === 'signin' && <Auth goToMain={() => setCurrentPage('main')} />
       }
       {
         currentPage === 'signup' && <Auth />
       }
       {
-        currentPage === 'main' && <Sign />
+        currentPage === 'main' && <Sign goToSignin={() => setCurrentPage('signin')}/>
       }
     </div>
     

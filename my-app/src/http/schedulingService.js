@@ -21,6 +21,7 @@ export default class SchedulingService
             console.log(e)
         }
     }
+
     static async register(user)
     {
         try{
@@ -28,7 +29,6 @@ export default class SchedulingService
                 method: 'post',
                 url: 'http://localhost:5000/api/register',
                 data: {
-                    'username': user.username,
                     'email': user.email,
                     'password': user.password,
                 },
@@ -41,4 +41,26 @@ export default class SchedulingService
             console.log(e)
         }
     }
+    static async logout()
+    {
+        try{
+            const response = await axios({
+                method: 'post',
+                url: 'http://localhost:5000/api/logout',
+                data: {
+                },
+                headers: {
+                  'Content-Type': 'application/json'
+                } 
+            })
+            console.log(response.data)
+            localStorage.removeItem('token')
+                return response.data
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+
+
 }

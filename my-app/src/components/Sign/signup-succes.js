@@ -8,17 +8,32 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
+import SchedulingService from "../../http/schedulingService";
 
-
-export default function ExampleFilterMemberCheckbox() {
+export default function ExampleFilterMemberCheckbox({goToSignin}) {
   const [members, setMembers] = React.useState([false, true, false]);
   const toggleMember = (index) => (event) => {
     const newMembers = [...members];
     newMembers[index] = event.target.checked;
     setMembers(newMembers);
   };
+
+  // const onSubmit = async (data) => {
+    
+  //   const token = await SchedulingService.logout(data)
+  //   localStorage.setItem('token', token.refreshToken)
+  //   console.log(token)
+  //   afterSignIn()
+  // };
   
+
+  const logOut =()=>{
+    SchedulingService.logout() 
+    goToSignin()
+  }
+
   return (
+
     <Sheet
       variant="outlined"
       sx={{
@@ -101,6 +116,8 @@ export default function ExampleFilterMemberCheckbox() {
               onChange={toggleMember(2)}
             />
           </ListItem>
+          
+          <button onClick={logOut}>logout</button>
         </List>
       </Box>
     
