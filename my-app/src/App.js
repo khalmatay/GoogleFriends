@@ -6,7 +6,6 @@ import { useState } from "react"
 function App() {
   const [currentPage, setCurrentPage] = useState(localStorage.getItem('token') ? 'main': 'signin');//Если есть токен то выведит main
 
-
   return (
     <div>
       {

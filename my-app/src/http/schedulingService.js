@@ -60,7 +60,29 @@ export default class SchedulingService
             console.log(e)
         }
     }
+    
+    
+    static async getUsers(user)
+    {
+        
+        try{
+            const localToken=localStorage.getItem('token') 
+            console.log('eacdsvfcdz')
+            const response = await axios({
+                method: 'get',
+                url: 'http://localhost:5000/api/users',
+                data: {
+                    
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localToken}` 
 
-
-
+                } 
+            })
+            return response.data
+        }catch(e){
+            console.log(e)
+        }
+    }
 }

@@ -18,6 +18,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
     setMembers(newMembers);
   };
 
+
   // const onSubmit = async (data) => {
     
   //   const token = await SchedulingService.logout(data)
@@ -25,12 +26,15 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
   //   console.log(token)
   //   afterSignIn()
   // };
+
   
 
   const logOut =()=>{
     SchedulingService.logout() 
     goToSignin()
   }
+
+  // React.useEffect[]
 
   return (
 
@@ -115,9 +119,11 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
               checked={members[2]}
               onChange={toggleMember(2)}
             />
+            
           </ListItem>
-          
+          <button onClick={SchedulingService.getUsers()}>get users</button>
           <button onClick={logOut}>logout</button>
+          
         </List>
       </Box>
     
