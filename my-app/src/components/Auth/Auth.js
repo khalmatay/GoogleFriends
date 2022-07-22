@@ -29,9 +29,8 @@ export default function ({goToMain}) {
 
   const onSubmit = async (data) => {
     const token = await SchedulingService.login(data)
-    localStorage.setItem('token', token.refreshToken)
+    localStorage.setItem('token', token.accessToken)
     goToMain()
-    console.log(data)
   };
 
 

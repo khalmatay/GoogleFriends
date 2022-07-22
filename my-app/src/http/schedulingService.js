@@ -53,7 +53,6 @@ export default class SchedulingService
                   'Content-Type': 'application/json'
                 } 
             })
-            console.log(response.data)
             localStorage.removeItem('token')
                 return response.data
         }catch(e){
@@ -66,14 +65,12 @@ export default class SchedulingService
     {
         
         try{
+            console.log("GET USERS")
             const localToken=localStorage.getItem('token') 
-            console.log('eacdsvfcdz')
+            console.log(localToken,"GET")
             const response = await axios({
                 method: 'get',
                 url: 'http://localhost:5000/api/users',
-                data: {
-                    
-                },
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localToken}` 

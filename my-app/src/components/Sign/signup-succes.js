@@ -18,6 +18,17 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
     setMembers(newMembers);
   };
 
+  const [users, setUsers] = React.useState([])
+  async function getUsers() {
+    try {
+      const response = await SchedulingService.getUsers()
+      setUsers(response)
+      console.log(response)
+    } catch (error) {
+      
+    }
+    
+  }
 
   // const onSubmit = async (data) => {
     
@@ -29,6 +40,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
 
   
 
+  // const newUsers = user.map(user=>user.email==a;dk/)
   const logOut =()=>{
     SchedulingService.logout() 
     goToSignin()
@@ -121,9 +133,11 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
             />
             
           </ListItem>
-          <button onClick={SchedulingService.getUsers()}>get users</button>
+          <button onClick={getUsers}>get users</button>
           <button onClick={logOut}>logout</button>
-          
+          {users.map(user =>
+            <div key={user.id}>{user.email}</div>
+          )}
         </List>
       </Box>
     

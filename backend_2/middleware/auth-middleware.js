@@ -8,12 +8,12 @@ module.exports = function (req, res, next) {
         if (!authorizationHeader) {
             return next(ApiError.UnauthorizedError());
         }
-        onsole.log('nano')
+        console.log('nano')
         const accessToken = authorizationHeader.split(' ')[1];
         if (!accessToken) {
             return next(ApiError.UnauthorizedError());
         }
-        onsole.log('ok')
+        console.log('ok')
         const userData = tokenService.validateAccessToken(accessToken);
         if (!userData) {
             return next(ApiError.UnauthorizedError());
