@@ -19,6 +19,9 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
   };
 
   const [users, setUsers] = React.useState([])
+  React.useEffect(()=>{getUsers()})
+
+  
   async function getUsers() {
     try {
       const response = await SchedulingService.getUsers()
@@ -133,11 +136,12 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
             />
             
           </ListItem>
-          <button onClick={getUsers}>get users</button>
-          <button onClick={logOut}>logout</button>
+          {/* <button onClick={getUsers}>get users</button> */}
           {users.map(user =>
             <div key={user.id}>{user.email}</div>
           )}
+          <button onClick={logOut}>logout</button>
+         
         </List>
       </Box>
     
