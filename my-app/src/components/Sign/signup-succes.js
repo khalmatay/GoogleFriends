@@ -19,7 +19,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
   };
 
   const [users, setUsers] = React.useState([])
-  React.useEffect(()=>{getUsers()})
+  React.useEffect(()=>{getUsers()},[])
 
   
   async function getUsers() {
@@ -44,6 +44,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
   
 
   // const newUsers = user.map(user=>user.email==a;dk/)
+  
   const logOut =()=>{
     SchedulingService.logout() 
     goToSignin()
@@ -87,7 +88,43 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
             },
           }}
         >
-          <ListItem>
+         
+          <ListItem >
+            
+            <Checkbox 
+              label="Fernando Pidrillio"
+             
+              checked={members[2]}
+              onChange={toggleMember(2)}
+            />
+            
+          </ListItem>
+          {/* <button onClick={getUsers}>get users</button> */}
+          {users.map(user =>
+            <>
+            {/* <Avatar aria-hidden="true" src="/static/images/avatar/2.jpg" /> */}
+            <Checkbox key={user.id}
+                disabled
+                label={user.email}
+                overlay
+                color="neutral"
+            />
+            
+            </>
+          )}
+          <button onClick={logOut}>logout</button>
+         
+        </List>
+      </Box>
+  
+    </Sheet>
+    
+  );
+}
+ 
+
+
+ {/* <ListItem>
             <Avatar aria-hidden="true" src="/static/images/avatar/1.jpg" />
             <Checkbox
               disabled
@@ -96,14 +133,14 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
               checked={members[0]}
               onChange={toggleMember(0)}
             />
-          </ListItem>
-          <ListItem
+          </ListItem> */}
+          {/* <ListItem
             {...(members[1] && {
               variant: 'soft',
               color: 'primary',
             })}
           >
-            <Avatar aria-hidden="true" src="/static/images/avatar/2.jpg" />
+            
             <Checkbox
               overlay
               label={
@@ -122,34 +159,4 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
               checked={members[1]}
               onChange={toggleMember(1)}
             />
-          </ListItem>
-          <ListItem {...(members[2] && { variant: 'soft', color: 'neutral' })}>
-            <Avatar aria-hidden="true" variant="solid">
-              FP
-            </Avatar>
-            <Checkbox
-              label="Fernando Pidrillio"
-              overlay
-              color="neutral"
-              checked={members[2]}
-              onChange={toggleMember(2)}
-            />
-            
-          </ListItem>
-          {/* <button onClick={getUsers}>get users</button> */}
-          {users.map(user =>
-            <div key={user.id}>{user.email}</div>
-          )}
-          <button onClick={logOut}>logout</button>
-         
-        </List>
-      </Box>
-    
-
-
-      
-    </Sheet>
-    
-  );
-}
- 
+          </ListItem> */}

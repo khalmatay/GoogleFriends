@@ -30,7 +30,16 @@ export default function ({goToMain}) {
   const onSubmit = async (data) => {
     const token = await SchedulingService.login(data)
     localStorage.setItem('token', token.accessToken)
+    localStorage.setItem('refreshToken', token.refreshToken)
     goToMain()
+  };
+  
+
+  const onRegisterSubmit = async (data) => {
+    const token = await SchedulingService.register(data)
+    changeAuthMode()
+    
+    
   };
 
 
@@ -44,7 +53,7 @@ export default function ({goToMain}) {
 
   return (
     <div className="Auth-form-container">
-      <SignUp onSubmit={onSubmit} handleChangeItem={handleChangeItem} changeAuthMode={changeAuthMode} register={register} handleSubmit={handleSubmit}/>
+      <SignUp onSubmit={onRegisterSubmit} handleChangeItem={handleChangeItem} changeAuthMode={changeAuthMode} register={register} handleSubmit={handleSubmit}/>
     </div>
   )
 }

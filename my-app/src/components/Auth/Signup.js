@@ -9,16 +9,16 @@ const SignUp = ({ onSubmit, handleChangeItem, changeAuthMode, handleSubmit, regi
               Sign In
             </span>
           </div>
-          {/* <div className="form-group mt-3">
+          <div className="form-group mt-3">
             <label>Full Name</label>
             <input
-              {...register("nickName", { required: true })}
+              {...register("name", { required: true })}
               type="text"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
               onChange={handleChangeItem} 
             />
-          </div> */}
+          </div>
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
@@ -41,7 +41,7 @@ const SignUp = ({ onSubmit, handleChangeItem, changeAuthMode, handleSubmit, regi
           </div>
           <div className="d-grid gap-2 mt-3">
             
-            <button type="submit" className="btn btn-primary" onClick={changeAuthMode}>
+            <button type="submit" className="btn btn-primary" >
             Submit
             </button>
             {/* <input class="btn btn-primary" type="submit" value="Submit">Submit</input> */}
