@@ -20,7 +20,24 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
 
   const [users, setUsers] = React.useState([])
   React.useEffect(()=>{getUsers()},[])
+  const socket = new WebSocket('ws://localhost:5000/')
 
+  React.useEffect(() => { 
+    socket.onopen=()=>{
+      socket.send(JSON.stringify({
+          method:"connection",
+          id: 555,
+          username:"Nurbek"
+          
+  
+      }))
+  }
+  
+  socket.onmessage = (event ) =>{
+      console.log('С сервера пришло сообщение',event.data)
+  }
+
+  }, [])
   
   async function getUsers() {
     try {
@@ -53,6 +70,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
   // React.useEffect[]
 
   return (
+    <>
 
     <Sheet
       variant="outlined"
@@ -109,7 +127,9 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
                 overlay
                 color="neutral"
             />
-            
+             <Typography level="body2" noWrap>
+              {user.status}
+            </Typography>
             </>
           )}
           <button onClick={logOut}>logout</button>
@@ -118,7 +138,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
       </Box>
   
     </Sheet>
-    
+  </>
   );
 }
  
@@ -160,3 +180,5 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
               onChange={toggleMember(1)}
             />
           </ListItem> */}
+
+          
