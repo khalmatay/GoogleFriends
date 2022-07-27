@@ -13,6 +13,7 @@ export default function ({goToMain}) {
 
 
   const[itemToDo,setItemToDo]=useState("")
+  
   const handleChangeItem = (event) => { // принимает событие (автоматически) 
     setItemToDo(event.target.value); // меняет значение инпута на то что пишем
   }; 
@@ -28,9 +29,13 @@ export default function ({goToMain}) {
 
 
   const onSubmit = async (data) => {
-    const token = await SchedulingService.login(data)
-    localStorage.setItem('token', token.accessToken)
-    localStorage.setItem('refreshToken', token.refreshToken)
+    const response = await SchedulingService.login(data);
+    console.log("token ====>", response)
+    localStorage.setItem('token', response.accessToken)
+    localStorage.setItem('refreshToken', response.refreshToken)
+    localStorage.setItem('name', JSON.stringify(response.user))
+   
+    
     goToMain()
   };
   

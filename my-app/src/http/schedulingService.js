@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class SchedulingService
+export default class SchedulingService 
 {
     static async login(user)
     {
@@ -17,7 +17,7 @@ export default class SchedulingService
                 } 
             })
             console.log(response.data)
-
+            console.log(response.data.user.name)
             return response.data
             
         }catch(e){
@@ -84,6 +84,7 @@ export default class SchedulingService
 
                 } 
             })
+            // const suka = response.data.us
             console.log(response.data)
             return response.data
         }catch(e){

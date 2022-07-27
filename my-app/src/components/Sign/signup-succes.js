@@ -10,6 +10,7 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import SchedulingService from "../../http/schedulingService";
 
+
 export default function ExampleFilterMemberCheckbox({goToSignin}) {
   const [members, setMembers] = React.useState([false, true, false]);
   const toggleMember = (index) => (event) => {
@@ -20,14 +21,15 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
 
   const [users, setUsers] = React.useState([])
   React.useEffect(()=>{getUsers()},[])
+  
   const socket = new WebSocket('ws://localhost:5000/')
+  const nameSocket = new SchedulingService()
 
   React.useEffect(() => { 
     socket.onopen=()=>{
       socket.send(JSON.stringify({
           method:"connection",
-          id: 555,
-          username:"Nurbek"
+          username:JSON.parse(localStorage.getItem("name")).name
           
   
       }))
@@ -127,7 +129,7 @@ export default function ExampleFilterMemberCheckbox({goToSignin}) {
                 overlay
                 color="neutral"
             />
-             <Typography level="body2" noWrap>
+             <Typography level="body2" noWrap >
               {user.status}
             </Typography>
             </>
