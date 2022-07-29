@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     status:{type:String,default:"Не в сети"},
     isActivated:{type: Boolean,default: false},//подтвердил почту или нет
     activationLink:{type: String }//ссылка для активации
+    
 
 })
 module.exports = model('User',UserSchema);

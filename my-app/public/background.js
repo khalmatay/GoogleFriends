@@ -35,12 +35,11 @@ chrome.windows.getAll({}, function(windows) {
             console.log('Value is set to ' + valueexample);
           });
           console.log('close');
-          chrome.storage.local.set({statusOnline: 0});
+          
         }
     });
     checkWindowCount();
 });
-
 
 // Called when the number of windows have been incremented
 function checkWindowCount() {
