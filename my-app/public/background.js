@@ -1,4 +1,5 @@
-chrome.runtime.onInstalled.addListener(async () => {
+
+async function starter() {
   
 
   // Executes ContentScript on all tabs (including already open ones)
@@ -11,11 +12,11 @@ chrome.runtime.onInstalled.addListener(async () => {
       });
     }
   }
-});
+}
+
+chrome.runtime.onInstalled.addListener(starter());
 
 console.log('The dumb-stats project is successfully loaded!');
-
-
 
 
 console.log('assdsdsds')
@@ -28,16 +29,27 @@ chrome.windows.getAll({}, function(windows) {
         checkWindowCount();
     });
     chrome.windows.onRemoved.addListener(function() {
+      let valueexample=1;
         if (--windowCount === 0) {
+          chrome.storage.local.set({keyexample: valueexample}, function() {
+            console.log('Value is set to ' + valueexample);
+          });
           console.log('close');
+          chrome.storage.local.set({statusOnline: 0});
         }
     });
     checkWindowCount();
 });
 
+
 // Called when the number of windows have been incremented
 function checkWindowCount() {
     if (windowCount === 1) {
+      let valueexample=2;
+      chrome.storage.local.set({keyexample: valueexample}, function() {
+        console.log('Value is set to ' + valueexample);
+      });
       console.log('open');
+      chrome.storage.local.set({statusOnline: 1});
     }
 }
