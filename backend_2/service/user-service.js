@@ -79,7 +79,7 @@ class UserService {
     async getFriends(id){
         
         const user = await UserModel.findOne({  _id: id})
-        return user.status;
+        return user.friends;
     }
 }
 
