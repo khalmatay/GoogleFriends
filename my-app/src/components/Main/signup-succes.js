@@ -79,6 +79,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   const [status, setStatus] = React.useState("Не в сети");
 
   const [users, setUsers] = React.useState([]);
+  
 
   React.useEffect(() => {
     getUsers();
@@ -88,7 +89,8 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   }, []);
 
   const socket = new WebSocket("ws://localhost:5000/");
-  const nameSocket = new SchedulingService();
+ 
+
 
   React.useEffect(() => {
     socket.onopen = () => {
@@ -104,6 +106,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
       console.log("С сервера пришло сообщение", event.data);
     };
   }, []);
+
 
   async function getStatus() {
     try {
@@ -131,6 +134,8 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
     SchedulingService.logout();
     goToSignin();
   };
+
+
 
   return (
     <>

@@ -76,6 +76,11 @@ class UserService {
         const users = await UserModel.find();
         return users;
     }
+    async getFriends(id){
+        
+        const user = await UserModel.findOne({  _id: id})
+        return user.status;
+    }
 }
 
 module.exports = new UserService();

@@ -75,6 +75,17 @@ class UserController {
         }
     }
 
+    async getFriends (req, res, next) {
+        try {
+            console.log(req.user.id,"ascsscs")
+            const users = await userService.getFriends(req.user.id);
+            return res.json(users);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+
 }
 
 module.exports = new UserController();

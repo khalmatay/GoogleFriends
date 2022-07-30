@@ -1,20 +1,19 @@
-// import axios from 'axios'
-// export default class myWebSocket{
-//     React.useEffect(()=>{
+import SchedulingService from "./schedulingService";
+async function  WebSocket() {
+  const socket = new WebSocket("ws://localhost:5000/");
+  const nameSocket = new SchedulingService();
+    socket.onopen = () => {
+      socket.send(
+        JSON.stringify({
+          method: "connection",
+          username: JSON.parse(localStorage.getItem("name")).name,
+        })
+      );
+    };
 
-//     const socket = new WebSocket('ws://localhost:5000/')
-//     socket.onopen=()=>{
-//         socket.send(JSON.stringify({
-//             method:"connection",
-//             id: 555,
-//             username:"Nurbek"
-            
-
-//         }))
-//     }
-
-//     socket.onmessage = (event ) =>{
-//         console.log('С сервера пришло сообщение',event.data)
-//     }},[])
-
-// }
+    socket.onmessage = (event) => {
+      console.log("С сервера пришло сообщение", event.data);
+    };
+  
+}
+export default WebSocket;

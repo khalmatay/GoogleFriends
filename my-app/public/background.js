@@ -19,7 +19,6 @@ chrome.runtime.onInstalled.addListener(starter());
 console.log('The dumb-stats project is successfully loaded!');
 
 
-console.log('assdsdsds')
 
 var windowCount = 0;
 chrome.windows.getAll({}, function(windows) {
@@ -50,5 +49,6 @@ function checkWindowCount() {
       });
       console.log('open');
       chrome.storage.local.set({statusOnline: 1});
+      fetch('http://google.com').then((res)=> console.log(res));
     }
 }
