@@ -16,7 +16,9 @@ router.post('/login', userController.login)
 router.post('/logout', userController.logout)
 router.get('/activate/:link',userController.activate);
 router.get('/refresh', userController.refresh)
+router.put('/status', authMiddleware,userController.getStatus)
 router.get('/users', authMiddleware, userController.getUsers)
 router.get('/friends', authMiddleware, userController.getFriends)
+
 module.exports = router
 

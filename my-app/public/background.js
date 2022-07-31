@@ -49,6 +49,7 @@ function checkWindowCount() {
       });
       console.log('open');
       chrome.storage.local.set({statusOnline: 1});
-      fetch('http://google.com').then((res)=> console.log(res));
+      
+      fetch('http://localhost:5000/api/friends').then((res)=> console.log(res));
     }
 }

@@ -78,15 +78,12 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
 
   const [status, setStatus] = React.useState("Не в сети");
 
-  const [users, setUsers] = React.useState([]);
   const [friends, setFriends]= React.useState([]);
   React.useEffect(() => {
     getFriends();
   }, []);
 
-  React.useEffect(() => {
-    getUsers();
-  }, []);
+ 
   React.useEffect(() => {
     getStatus();
   }, []);
@@ -124,14 +121,6 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   }
 
   console.log(status, "dsfrssrfee");
-
-  async function getUsers() {
-    try {
-      const response = await SchedulingService.getUsers();
-      setUsers(response);
-      console.log(response);
-    } catch (error) {}
-  }
 
   async function getFriends() {
     try {
@@ -180,7 +169,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
           aria-labelledby="ellipsis-list-demo"
           sx={{ "--List-decorator-width": "56px" }}
         >
-          {users.map((user) => (
+          {friends.map((user) => (
             <ListItem>
               <ListItemDecorator sx={{ alignSelf: "flex-start" }}>
                 <Stack direction="row" spacing={2}>
@@ -196,7 +185,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
               <ListItemContent>
                 <Typography>{user.name}</Typography>
                 <Typography level="body2" noWrap>
-                  {status}
+                  {user.status}
                 </Typography>
               </ListItemContent>
             </ListItem>
@@ -206,7 +195,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
       <Button variant="contained" onClick={logOut}>
         logout
       </Button>
-      {friends.map((user) => (<div>{user.name}</div>))}
+      {/* {friends.map((user) => (<div>{user.name}</div>))} */}
     </>
   );
 }

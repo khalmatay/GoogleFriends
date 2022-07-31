@@ -66,6 +66,19 @@ class UserController {
         }
     }
 
+    async getStatus (req, res, next) {
+        try {
+            console.log(req.user.id,"ascsscs")
+          
+            const {status} = req.body; 
+            const userData = await userService.getStatus(status,req.user.id,);
+            return res.json(userData);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+
     async getUsers(req, res, next) {
         try {
             const users = await userService.getAllUsers();

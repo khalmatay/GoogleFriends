@@ -5,3 +5,7 @@ for (let i in array ){
 
 }
 console.log(a)
+
+
+let ab="Mura"
+console.log(ab.split(" ")[0][0])

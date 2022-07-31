@@ -76,6 +76,7 @@ class UserService {
         const users = await UserModel.find();
         return users;
     }
+    
 
     async getFriends(id){
         let newFriend=[]
@@ -96,6 +97,19 @@ class UserService {
           
         return newFriend;
     }
+    async getStatus(newstatus,id){
+        const user = (await UserModel.findOne({  _id: id}))
+        user.status=newstatus
+       
+        // UserModel.findOne({  _id: id})=user
+        // console.log(user.status,"kkkkk")
+        
+        await user.save();
+          
+        return user;
+    }
+
+
 }
 
 module.exports = new UserService();
