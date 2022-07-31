@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import SchedulingService from "../../http/schedulingService";
 import SignIn from "./SignIn";
 import SignUp from "./Signup";
+/* global chrome*/
 
 export default function ({goToMain}) {
   let [authMode, setAuthMode] = useState("signin")
@@ -32,6 +33,7 @@ export default function ({goToMain}) {
     const response = await SchedulingService.login(data);
     console.log("token ====>", response)
     localStorage.setItem('token', response.accessToken)
+    chrome.storage.local.set({'token': response.accessToken})
     localStorage.setItem('refreshToken', response.refreshToken)
     localStorage.setItem('name', JSON.stringify(response.user))
    
