@@ -76,10 +76,25 @@ class UserService {
         const users = await UserModel.find();
         return users;
     }
+
     async getFriends(id){
-        
+        let newFriend=[]
+        console.log(id,'AGAAG')
         const user = await UserModel.findOne({  _id: id})
-        return user.friends;
+        for (let i in user.friends) {
+            console.log(newFriend,"dsdsddsdvxzxx")
+            newFriend.push(await UserModel.findOne({  _id: user.friends[i]}))
+
+            console.log(newFriend)
+
+            // console.log(UserModel.findOne({  _id: newFriend}))
+            // .findOne({  _id:user.friends[i]})
+            // let newFriends=[];
+            // newFriends=newFriends+[user.friends[i]]
+            // console.log(newFriends,"ddsdsdcsccc")
+          }
+          
+        return newFriend;
     }
 }
 
