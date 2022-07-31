@@ -79,7 +79,10 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   const [status, setStatus] = React.useState("Не в сети");
 
   const [users, setUsers] = React.useState([]);
-  
+  const [friends, setFriends]= React.useState([]);
+  React.useEffect(() => {
+    getFriends();
+  }, []);
 
   React.useEffect(() => {
     getUsers();
@@ -129,6 +132,15 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
       console.log(response);
     } catch (error) {}
   }
+
+  async function getFriends() {
+    try {
+      const response = await SchedulingService.getFriends();
+      setFriends(response);
+      console.log(response);
+    } catch (error) {}
+  }
+
 
   const logOut = () => {
     SchedulingService.logout();
@@ -194,6 +206,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
       <Button variant="contained" onClick={logOut}>
         logout
       </Button>
+      {friends.map((user) => (<div>{user.name}</div>))}
     </>
   );
 }

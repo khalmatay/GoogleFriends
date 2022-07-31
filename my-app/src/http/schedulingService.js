@@ -91,4 +91,29 @@ export default class SchedulingService
             console.log(e)
         }
     }
-}
+
+    static async getFriends(user)
+    {
+        
+        try{
+            console.log("GET Friends")
+            const localToken=localStorage.getItem('token') 
+            console.log(localToken,"GET")
+            const response = await axios({
+                method: 'get',
+                url: 'http://localhost:5000/api/friends',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localToken}` 
+
+                } 
+            })
+        
+            console.log(response.data)
+            return response.data
+        }catch(e){
+            console.log(e)
+        }
+    }
+    }
+
