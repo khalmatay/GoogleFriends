@@ -132,6 +132,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
           </Stack>
         </ListItemDecorator>
       </h1>
+      <h6> {JSON.parse(localStorage.getItem("name")).id}: your ID</h6>
       <Box sx={{ width: 320 }}>
         <Typography
           id="ellipsis-list-demo"
