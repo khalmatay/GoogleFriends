@@ -1,6 +1,6 @@
 /* global chrome*/
 import "./signup-succes.css";
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import List from "@mui/joy/List";
@@ -14,6 +14,7 @@ import Stack from "@mui/material/Stack";
 import { StyledBadge } from "./SignupSuccessStyles";
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import { useForm } from 'react-hook-form';
 
 
 
@@ -23,6 +24,18 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   const [status, setStatus] = React.useState("Не в сети");
 
   const [friends, setFriends]= React.useState([]);
+
+  const[itemToDo,setItemToDo]=useState("")
+
+  const {
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  
+  const handleChangeItem = (event) => { // принимает событие (автоматически) 
+    setItemToDo(event.target.value); // меняет значение инпута на то что пишем
+  }; 
+  console.log(itemToDo) 
 
 
 
@@ -172,12 +185,12 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
         </List>
       </Box>
       
-      <Box>
+      <form>
       <TextField id="filled-basic" label="введи Id друга"   size="verysmall"
-        variant="filled" />
+        variant="filled" onChange={handleChangeItem} />
       
       <Button variant="outlined" endIcon={<SendIcon />}>Outlined</Button>
-      </Box>
+      </form>
       <Button variant="contained" onClick={logOut}>
         logout
       </Button>
