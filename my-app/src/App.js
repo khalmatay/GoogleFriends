@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import Auth from "./components/Auth/Auth"
 import Sign from "./components/Main/signup-succes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
@@ -13,6 +13,11 @@ function App() {
   
   
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', () => {
+      console.log('WTF')
+    })
+  } ,[])
   return (
     <div>
       {

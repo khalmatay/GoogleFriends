@@ -1,4 +1,5 @@
 import SchedulingService from "./schedulingService";
+
 async function  WebSocket() {
   const socket = new WebSocket("ws://localhost:5000/");
   const nameSocket = new SchedulingService();

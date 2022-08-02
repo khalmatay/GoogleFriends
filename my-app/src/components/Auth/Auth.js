@@ -36,6 +36,8 @@ export default function ({goToMain}) {
     chrome.storage.local.set({'token': response.accessToken})
     localStorage.setItem('refreshToken', response.refreshToken)
     localStorage.setItem('name', JSON.stringify(response.user))
+    console.log(JSON.stringify(response.user),'aahhahahh')
+    chrome.storage.local.set({'name': JSON.stringify(response.user)})
    
     
     goToMain()

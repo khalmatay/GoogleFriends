@@ -10,40 +10,40 @@ import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
 import SchedulingService from "../../http/schedulingService";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import Badge from "@mui/material/Badge";
 import Stack from "@mui/material/Stack";
+import { StyledBadge } from "./SignupSuccessStyles";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    backgroundColor: "red",
-    color: "red",
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    "&::after": {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      borderRadius: "50%",
-      animation: "ripple 1.2s infinite ease-in-out",
-      border: "1px solid currentColor",
-      content: '""',
-    },
-  },
-  "@keyframes ripple": {
-    "0%": {
-      transform: "scale(.8)",
-      opacity: 1,
-    },
-    "100%": {
-      transform: "scale(2.4)",
-      opacity: 0,
-    },
-  },
-}));
 
 export default function ExampleFilterMemberCheckbox({ goToSignin }) {
+
+  const [status, setStatus] = React.useState("Не в сети");
+
+  const [friends, setFriends]= React.useState([]);
+
+
+
+  // const socket = new WebSocket("ws://localhost:5000/");
+
+
+  React.useEffect(() => {
+    getFriends();
+    getStatus();
+
+    // socket.onopen = () => {
+    //   socket.send(
+    //     JSON.stringify({
+    //       method: "connection",
+    //       username: JSON.parse(localStorage.getItem("name")).name,
+    //     })
+    //   );
+    // };
+    
+    // socket.onmessage = (event) => {
+    //   console.log("С сервера пришло сообщение", event.data);
+    // };
+  }, []);
+
+
   function stringToColor(string) {
     let hash = 0;
     let i;
@@ -76,36 +76,10 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
   // const [status, setSatus] = React.useState(0);
   // setSatus(chrome.storage.local.get(['statusOnline'], (val)))
 
-  const [status, setStatus] = React.useState("Не в сети");
-
-  const [friends, setFriends]= React.useState([]);
-  React.useEffect(() => {
-    getFriends();
-  }, []);
 
  
-  React.useEffect(() => {
-    getStatus();
-  }, []);
-
-  const socket = new WebSocket("ws://localhost:5000/");
- 
 
 
-  React.useEffect(() => {
-    socket.onopen = () => {
-      socket.send(
-        JSON.stringify({
-          method: "connection",
-          username: JSON.parse(localStorage.getItem("name")).name,
-        })
-      );
-    };
-
-    socket.onmessage = (event) => {
-      console.log("С сервера пришло сообщение", event.data);
-    };
-  }, []);
 
 
   async function getStatus() {
@@ -170,7 +144,7 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
           sx={{ "--List-decorator-width": "56px" }}
         >
           {friends.map((user) => (
-            <ListItem>
+            <ListItem key={user._id}>
               <ListItemDecorator sx={{ alignSelf: "flex-start" }}>
                 <Stack direction="row" spacing={2}>
                   <StyledBadge
