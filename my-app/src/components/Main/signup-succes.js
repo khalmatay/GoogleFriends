@@ -12,6 +12,10 @@ import SchedulingService from "../../http/schedulingService";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { StyledBadge } from "./SignupSuccessStyles";
+import SendIcon from '@mui/icons-material/Send';
+import TextField from '@mui/material/TextField';
+
+
 
 
 export default function ExampleFilterMemberCheckbox({ goToSignin }) {
@@ -165,6 +169,13 @@ export default function ExampleFilterMemberCheckbox({ goToSignin }) {
             </ListItem>
           ))}
         </List>
+      </Box>
+      
+      <Box>
+      <TextField id="filled-basic" label="введи Id друга"   size="verysmall"
+        variant="filled" />
+      
+      <Button variant="outlined" endIcon={<SendIcon />}>Outlined</Button>
       </Box>
       <Button variant="contained" onClick={logOut}>
         logout
